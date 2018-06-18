@@ -9,20 +9,27 @@ import android.view.View
 import android.view.ViewGroup
 import com.panda.materialproperty.R
 import com.panda.materialproperty.databinding.FragmentEnterprisesBinding
-import org.jetbrains.anko.linearLayout
 
 
 /**
  * Created by A.Olkinitskaya on 18.06.2018.
  */
-class EnterprisesFragment : Fragment() {
+class EnterprisesFragment : Fragment(), EnterprisesContract.View {
 
     private var binding: FragmentEnterprisesBinding? = null
+    private var presenter: EnterprisesContract.Presenter? = null
 
     private val locationName: String by lazy {
         arguments?.getString("locationName", "")!!
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        presenter = EnterprisesPresenter(
+//            this,
+//            LoadAllEnterprisesUseCase(EnterprisesRepositoryImpl(Enterprises))
+//        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +52,11 @@ class EnterprisesFragment : Fragment() {
         super.onDestroyView()
         binding = null
     }
+
+    override fun render(viewState: EnterprisesContract.View.State) {
+        TODO("not implemented")
+    }
+
 
     companion object {
         fun newInstance(locationName: String): EnterprisesFragment {

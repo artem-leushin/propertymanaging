@@ -3,6 +3,7 @@ package com.panda.materialproperty.data.entity
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import com.panda.materialproperty.domain.entity.Enterprise
 
 /**
  * Created by A.Olkinitskaya on 17.06.2018.
@@ -85,3 +86,30 @@ data class EnterpriseDB(
     val commentary: String? = null
 
 )
+
+fun EnterpriseDB.toDomain() =
+    Enterprise(
+        id,
+        cardStatus,
+        objectAccountingName,
+        rnfi,
+        dateRnfi,
+        totalSquare ?: Int.MIN_VALUE,
+        length ?: Int.MIN_VALUE,
+        ownershipRegistrationNumberRf ?: "",
+        dateOwnershipRf ?: "",
+        ownershipRegistrationNumberOther ?: "",
+        dateOwnershipOther ?: "",
+        cadasrtalNumber ?: "",
+        dateCadastral ?: "",
+        address,
+        propertyObjectType,
+        objectPurpose,
+        inventoryNumber,
+        implementationYear,
+        initialPriceRub,
+        remainingPriceRub,
+        systemNumber,
+        requestNumber,
+        order
+    )
