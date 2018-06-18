@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">materialproperty</string>
+    <string name="zdravstvujte">Здравствуйте</string>
+    <string name="text_forgot_pass"><u>Забыли пароль?</u></string>
+    <string name="dialog_title">Вы ввели неккоректную\nпочту и/или пароль.</string>
+    <string name="dialog_subtitle">Попробуйте снова или обратитесь:"</string>
+    <string name="text_got_it"><u>Понятно!</u></string>
+    <string name="txt_login">Авторизация</string>
+    <string name="txt_email_hint">введите почту</string>
+    <string name="txt_pass_hint">введите пароль</string>
+    <string name="enterprises_location_label">Объекты расположенные</string>
+    <string name="action_filter">Фильтр</string>
+
+    <string name="street_sharaga">ул. Университетская</string>
+    <string name="street_gogol">ул. Гоголя</string>
+    <string name="street_kurchatov">ул. Курчатова</string>
+    <string name="street_kornilov_bank">Набережная Корнилова</string>
+    <string name="street_gagarin">ул. Гагарина</string>
+    <string name="street_repin">ул. Репина</string>
+
+
+</resources>

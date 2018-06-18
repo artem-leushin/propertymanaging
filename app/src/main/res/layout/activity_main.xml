@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:background="@drawable/bg_reversed">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                app:navigationIcon="@drawable/icon_hamburger" />
+
+            <FrameLayout
+                android:id="@+id/main_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:background="@color/colorPrimaryLight2"
+            android:id="@+id/nav_options"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:itemTextAppearance="@style/NavigationDrawerStyle"
+            app:headerLayout="@layout/layout_drawer_header"
+            app:menu="@menu/menu_left_pane"
+            >
+            <!---->
+            <!--<LinearLayout-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<include-->
+                    <!--bind:name="@{@string/street_sharaga}"-->
+                    <!--android:id="@+id/drawer_uni"-->
+                    <!--layout="@layout/layout_drawer_item"/>-->
+
+                <!--<include-->
+                    <!--bind:name="@{@string/street_gogol}"-->
+                    <!--android:id="@+id/drawer_gogol"-->
+                    <!--layout="@layout/layout_drawer_item"/>-->
+
+                <!--<include-->
+                    <!--bind:name="@{@string/street_kurchatov}"-->
+                    <!--android:id="@+id/drawer_kurchatov"-->
+                    <!--layout="@layout/layout_drawer_item"/>-->
+
+                <!--<include-->
+                    <!--bind:name="@{@string/street_kornilov_bank}"-->
+                    <!--android:id="@+id/drawer_kornilov"-->
+                    <!--layout="@layout/layout_drawer_item"/>-->
+
+                <!--<include-->
+                    <!--bind:name="@{@string/street_gagarin}"-->
+                    <!--android:id="@+id/drawer_gagarin"-->
+                    <!--layout="@layout/layout_drawer_item"/>-->
+
+                <!--<include-->
+                    <!--bind:name="@{@string/street_repin}"-->
+                    <!--android:id="@+id/drawer_repin"-->
+                    <!--layout="@layout/layout_drawer_item"/>-->
+
+            <!--</LinearLayout>-->
+            
+        </android.support.design.widget.NavigationView>
+
+    </android.support.v4.widget.DrawerLayout>
+</layout>

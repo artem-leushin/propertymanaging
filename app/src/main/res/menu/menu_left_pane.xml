@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sharaga"
+            android:title="@string/street_sharaga"
+            android:checked="true"
+            />
+        <item
+            android:id="@+id/nav_gogol"
+            android:title="@string/street_gogol"
+            />
+        <item
+            android:id="@+id/nav_kur"
+            android:title="@string/street_kurchatov"
+
+            />
+        <item
+            android:id="@+id/nav_korn"
+            android:title="@string/street_kornilov_bank"
+            />
+        <item
+            android:id="@+id/nav_gaga"
+            android:title="@string/street_gagarin"
+            />
+        <item
+            android:id="@+id/nav_repa"
+            android:title="@string/street_repin"
+            />
+    </group>
+</menu>

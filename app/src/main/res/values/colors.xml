@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3771E6</color>
+    <color name="colorPrimaryDark">#044772</color>
+    <color name="colorPrimaryDark2">#0047b3</color>
+    <color name="colorPrimaryLight">#82b1ff</color>
+    <color name="colorPrimaryLight2">#779fff</color>
+    <color name="colorAccent">@color/deep_purple_500</color>
+
+    <color name="colorTextBlue">#3771E6</color>
+    <color name="colorLink">#07E184</color>
+
+    <color name="colorIndigoLight">#D9E4FA</color>
+    <color name="whiteOpacity82">#d1ffffff</color>
+    <color name="whiteOpacity64">#a3ffffff</color>
+    <color name="whiteOpacity30">#4dffffff</color>
+
+    <color name="colorMenuBorder">#633771e6</color>
+
+    <color name="colorGreenGradientStart">#00d78e</color>
+    <color name="colorGreenGradientEnd">#ed159f35</color>
+
+
+</resources>
