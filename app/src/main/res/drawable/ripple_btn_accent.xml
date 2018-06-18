@@ -5,5 +5,4 @@
     <item
         android:drawable="@drawable/shape_rect_accent" />
 
-
 </ripple>
