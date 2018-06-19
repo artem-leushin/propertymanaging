@@ -1,17 +1,15 @@
 package com.panda.materialproperty.data
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
-import com.panda.materialproperty.data.entity.EnterpriseDB
-import com.panda.materialproperty.data.repository.EnterprisesDao
+import android.content.Context
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 
 /**
  * Created by A.Olkinitskaya on 17.06.2018.
  */
 
-@Database(entities = [EnterpriseDB::class], version = 2)
-abstract class EnterprisesDatabase : RoomDatabase() {
+const val DB_NAME = "enterprises.db"
+const val DB_VERSION = 1
 
-    abstract fun enterprisesDao(): EnterprisesDao
-
+class EnterprisesDatabase(context: Context) :
+    SQLiteAssetHelper(context, DB_NAME, null, DB_VERSION) {
 }

@@ -88,10 +88,14 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
                 else View.INVISIBLE
 
         if (viewState.noContent) {
-            binding!!.groupNoContent.visibility = View.VISIBLE
+            binding!!.ivEmpty.visibility = View.VISIBLE
+            binding!!.tvEmpty.visibility = View.VISIBLE
+//            binding!!.groupNoContent.visibility = View.VISIBLE
             binding!!.rvEnterprises.visibility = View.INVISIBLE
         } else {
-            binding!!.groupNoContent.visibility = View.INVISIBLE
+            binding!!.ivEmpty.visibility = View.INVISIBLE
+            binding!!.tvEmpty.visibility = View.INVISIBLE
+//            binding!!.groupNoContent.visibility = View.INVISIBLE
             binding!!.rvEnterprises.visibility = View.VISIBLE
         }
 

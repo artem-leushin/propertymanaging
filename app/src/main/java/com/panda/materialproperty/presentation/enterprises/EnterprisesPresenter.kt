@@ -26,7 +26,6 @@ class EnterprisesPresenter(
     override fun loadAllEnterprises() {
         disposables.add(
             loadAllEnterprisesUseCase.load()
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { reduce(EnterprisesContract.View.StateChanges.StartLoading) }
                 .subscribe(
@@ -40,7 +39,6 @@ class EnterprisesPresenter(
     override fun loadEnterprisesAt(address: String) {
         disposables.add(
             loadEnterprisesAtLocationUseCase.load(address)
-                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { reduce(EnterprisesContract.View.StateChanges.StartLoading) }
                 .subscribe(
@@ -51,7 +49,10 @@ class EnterprisesPresenter(
     }
 
     private fun mapToAdapterItems(items: List<Enterprise>): List<EnterprisesContract.View.DisplayableItem> {
+        if (items.isEmpty()) return emptyList()
+
         val adapterItems: MutableList<EnterprisesContract.View.DisplayableItem> = mutableListOf()
+
         adapterItems += HeaderRow(
             firstColumn = "Наименование объекта учета",
             secondColumn = "Тип объекта недвижимости",
