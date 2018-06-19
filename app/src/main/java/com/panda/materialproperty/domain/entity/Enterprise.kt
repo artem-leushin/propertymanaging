@@ -1,8 +1,5 @@
 package com.panda.materialproperty.domain.entity
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
 
 /**
  * Created by A.Olkinitskaya on 17.06.2018.

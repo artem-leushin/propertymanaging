@@ -1,13 +1,12 @@
 package com.panda.materialproperty.data.repository
 
-import android.database.Cursor
+import androidx.core.database.getInt
+import com.panda.materialproperty.data.DB_NAME
 import com.panda.materialproperty.data.EnterprisesDatabase
-import com.panda.materialproperty.data.EnterprisesDatabase_Impl
+import com.panda.materialproperty.data.TABLE_NAME
+import com.panda.materialproperty.data.columns
 import com.panda.materialproperty.data.entity.EnterpriseDB
-import io.reactivex.Flowable
-import android.database.sqlite.SQLiteQueryBuilder
-import android.database.sqlite.SQLiteDatabase
-
+import io.reactivex.Observable
 
 
 /**
@@ -15,44 +14,55 @@ import android.database.sqlite.SQLiteDatabase
  */
 
 class EnterprisesDaoImpl(
-    private val databaseProvider: EnterprisesDatabase
+    private val dbProvider: EnterprisesDatabase
 ) : EnterprisesDao {
 
-    override fun getAllEnterprises(): Flowable<List<EnterpriseDB>> {
-        val query = "SELECT * FROM Nedvizh"
+    override fun getAllEnterprises(): Observable<List<EnterpriseDB>> =
+        Observable.never()
 
-        val db = databaseProvider.readableDatabase
-        val qb = SQLiteQueryBuilder()
-    }
 
     override fun getEnterprisesForLocation(
         address: String,
         columnName: String
-    ): Flowable<List<EnterpriseDB>> {
+    ): Observable<List<EnterpriseDB>> =
+        Observable.fromCallable {
+            val query = "SELECT * FROM $TABLE_NAME WHERE Адрес LIKE '%$address%'"
+            val cursor = dbProvider.readableDatabase.rawQuery(query, null)
+
+            val items: MutableList<EnterpriseDB> = mutableListOf()
+            cursor.apply {
+                while (moveToNext()) {
+
+                    var index: Int = getColumnIndexOrThrow("№ п/п")
+                    val id = getInt(index)
+
+                    index = getColumnIndexOrThrow("Наименование объекта учета")
+                    val name = getString(index)
+
+                    index = getColumnIndexOrThrow("Тип объекта недвижимости")
+                    val type = getString(index)
+
+                    index = getColumnIndexOrThrow("Номер регистрации иного вещного права\n")
+                    val number = getString(index)
+
+                    items += EnterpriseDB(
+                        id = id,
+                        objectAccountingName = name,
+                        propertyObjectType = type,
+                        ownershipRegistrationNumberOther = number
+                    )
+                }
+            }.close()
+
+            items
+        }
+
+    override fun getEnterprisesForLocationExact(address: String): Observable<List<EnterpriseDB>> {
         TODO("not implemented")
     }
 
-    override fun getEnterprisesForLocationExact(address: String): Flowable<List<EnterpriseDB>> {
-        TODO("not implemented")
-    }
-
-    override fun getEnterprisesForLocationMatch(address: String): Flowable<List<EnterpriseDB>> {
+    override fun getEnterprisesForLocationMatch(address: String): Observable<List<EnterpriseDB>> {
         TODO("not implemented")
     }
 }
 
-fun getEmployees(): Cursor {
-
-    val db = getReadableDatabase()
-    val qb = SQLiteQueryBuilder()
-
-    val sqlSelect = arrayOf("0 _id", "FirstName", "LastName")
-    val sqlTables = "Employees"
-
-    qb.tables = sqlTables
-    val c = qb.query(db, sqlSelect, null, null, null, null, null)
-
-    c.moveToFirst()
-    return c
-
-}

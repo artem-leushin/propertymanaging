@@ -1,8 +1,5 @@
 package com.panda.materialproperty.data.entity
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
 import com.panda.materialproperty.domain.entity.Enterprise
 
 /**
@@ -13,13 +10,13 @@ data class EnterpriseDB(
 
     val id: Int = Int.MIN_VALUE,
 
-    val cardStatus: String,
+    val cardStatus: String? = null,
 
-    val objectAccountingName: String,
+    val objectAccountingName: String? = null,
 
-    val rnfi: String,
+    val rnfi: String? = null,
 
-    val dateRnfi: String,
+    val dateRnfi: String? = null,
 
     val totalSquare: Int? = null,
 
@@ -37,20 +34,20 @@ data class EnterpriseDB(
 
     val dateCadastral: String? = null,
 
-    val address: String,
+    val address: String? = null,
 
-    val propertyObjectType: String,
+    val propertyObjectType: String? = null,
 
-    val objectPurpose: String,
-    val inventoryNumber: Int,
-    val implementationYear: Int,
-    val initialPriceRub: Int,
-    val remainingPriceRub: Int,
-    val systemNumber: Int,
+    val objectPurpose: String? = null,
+    val inventoryNumber: Int? = null,
+    val implementationYear: Int? = null,
+    val initialPriceRub: Int? = null,
+    val remainingPriceRub: Int? = null,
+    val systemNumber: Int? = null,
 
-    val requestNumber: Int,
+    val requestNumber: Int? = null,
 
-    val order: String,
+    val order: String? = null,
     val commentary: String? = null
 
 )
@@ -58,10 +55,10 @@ data class EnterpriseDB(
 fun EnterpriseDB.toDomain() =
     Enterprise(
         id,
-        cardStatus,
-        objectAccountingName,
-        rnfi,
-        dateRnfi,
+        cardStatus ?: "",
+        objectAccountingName ?: "",
+        rnfi ?: "",
+        dateRnfi ?: "",
         totalSquare ?: Int.MIN_VALUE,
         length ?: Int.MIN_VALUE,
         ownershipRegistrationNumberRf ?: "",
@@ -70,15 +67,15 @@ fun EnterpriseDB.toDomain() =
         dateOwnershipOther ?: "",
         cadasrtalNumber ?: "",
         dateCadastral ?: "",
-        address,
-        propertyObjectType,
-        objectPurpose,
-        inventoryNumber,
-        implementationYear,
-        initialPriceRub,
-        remainingPriceRub,
-        systemNumber,
-        requestNumber,
-        order,
+        address ?: "",
+        propertyObjectType ?: "",
+        objectPurpose ?: "",
+        inventoryNumber ?: Int.MIN_VALUE,
+        implementationYear ?: Int.MIN_VALUE,
+        initialPriceRub ?: Int.MIN_VALUE,
+        remainingPriceRub ?: Int.MIN_VALUE,
+        systemNumber ?: Int.MIN_VALUE,
+        requestNumber ?: Int.MIN_VALUE,
+        order ?: "",
         commentary ?: ""
     )

@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.panda.materialproperty.App
 import com.panda.materialproperty.R
+import com.panda.materialproperty.data.EnterprisesDatabase
+import com.panda.materialproperty.data.repository.EnterprisesDaoImpl
 import com.panda.materialproperty.data.repository.EnterprisesRepositoryImpl
 import com.panda.materialproperty.databinding.FragmentEnterprisesBinding
 import com.panda.materialproperty.domain.interactor.LoadAllEnterprisesUseCase
@@ -37,13 +39,13 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
 
             LoadAllEnterprisesUseCase(
                 EnterprisesRepositoryImpl(
-                    (context?.applicationContext as App).database!!.enterprisesDao()
+                    EnterprisesDaoImpl(EnterprisesDatabase(context!!))
                 )
             ),
 
             LoadEnterprisesAtLocationUseCase(
                 EnterprisesRepositoryImpl(
-                    (context?.applicationContext as App).database!!.enterprisesDao()
+                    EnterprisesDaoImpl(EnterprisesDatabase(context!!))
                 )
             )
         )
@@ -69,7 +71,7 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter?.loadAllEnterprises()
+        presenter?.loadEnterprisesAt(locationName)
     }
 
     override fun onDestroyView() {

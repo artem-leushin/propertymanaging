@@ -1,7 +1,5 @@
 package com.panda.materialproperty.data.repository
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Query
 import com.panda.materialproperty.data.entity.toDomain
 import com.panda.materialproperty.domain.entity.Enterprise
 import com.panda.materialproperty.domain.repository.EnterprisesRepository
@@ -16,11 +14,11 @@ class EnterprisesRepositoryImpl(
     private val dao: EnterprisesDao
 ) : EnterprisesRepository {
 
-    override fun getAllEnterprises(): Flowable<List<Enterprise>> =
+    override fun getAllEnterprises(): Observable<List<Enterprise>> =
         dao.getAllEnterprises().map { it.map { it.toDomain() } }
 
-    override fun getEnterprisesForLocation(where: String): Flowable<List<Enterprise>> =
-        dao.getEnterprisesForLocationMatch(where).map {
+    override fun getEnterprisesForLocation(where: String): Observable<List<Enterprise>> =
+        dao.getEnterprisesForLocation(where, "").map {
             it.map {
                 it.toDomain()
             }

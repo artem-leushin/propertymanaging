@@ -9,7 +9,7 @@ import io.reactivex.Observable
  */
 interface EnterprisesRepository {
 
-    fun getAllEnterprises(): Flowable<List<Enterprise>>
+    fun getAllEnterprises(): Observable<List<Enterprise>>
 
-    fun getEnterprisesForLocation(where: String): Flowable<List<Enterprise>>
+    fun getEnterprisesForLocation(where: String): Observable<List<Enterprise>>
 }
