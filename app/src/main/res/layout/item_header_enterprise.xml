@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_col_one"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextBlue"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_col_two"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Название объекта учета" />
+
+        <TextView
+            android:id="@+id/tv_col_two"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/shape_stroke_2_sides"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextBlue"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_col_one"
+            app:layout_constraintEnd_toStartOf="@+id/tv_col_three"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_col_one"
+            app:layout_constraintTop_toTopOf="@+id/tv_col_one"
+            tools:text="Номер регистрации вещ-го учета" />
+
+        <TextView
+            android:id="@+id/tv_col_three"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:gravity="center_vertical"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextBlue"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_col_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_col_two"
+            app:layout_constraintTop_toTopOf="@+id/tv_col_two"
+            tools:text="Тип объекта недвижимости" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

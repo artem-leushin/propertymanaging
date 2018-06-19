@@ -25,12 +25,10 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-//        database = RoomAsset.databaseBuilder(
-//            this,
-//            EnterprisesDatabase::class.java,
-//            "enterprises.db",
-//            getExternalFilesDir(null).absolutePath
-//        )
-//            .build()
+        database = RoomAsset.databaseBuilder(
+            this,
+            EnterprisesDatabase::class.java,
+            "enterprises.db"
+        ).build()
     }
 }

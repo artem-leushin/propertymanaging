@@ -25,6 +25,7 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 //        presenter = EnterprisesPresenter(
 //            this,
 //            LoadAllEnterprisesUseCase(EnterprisesRepositoryImpl(Enterprises))
