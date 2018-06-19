@@ -53,7 +53,6 @@
 
 
         <EditText
-            android:singleLine="true"
             android:id="@+id/et_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,12 +62,12 @@
             android:backgroundTint="@color/whiteOpacity30"
             android:ems="10"
             android:inputType="textEmailAddress"
+            android:singleLine="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_zdravstvujte_je" />
 
         <EditText
-            android:singleLine="true"
             android:id="@+id/et_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,6 +77,7 @@
             android:backgroundTint="@color/whiteOpacity30"
             android:ems="10"
             android:inputType="textPassword"
+            android:singleLine="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
@@ -114,41 +114,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_email_hint"
             android:textColor="@color/white"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/et_email"
-            app:layout_constraintTop_toTopOf="@+id/guide_email_hint" />
+            app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
         <TextView
             android:id="@+id/tv_hint_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="2dp"
             android:fontFamily="@font/montserrat_regular"
             android:text="@string/txt_pass_hint"
             android:textColor="@color/white"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="@+id/et_pass"
-            app:layout_constraintTop_toTopOf="@+id/guide_pass_hint" />
+            app:layout_constraintTop_toBottomOf="@+id/et_pass" />
 
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guide_email_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.61" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guide_pass_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.72" />
 
         <Button
             android:id="@+id/btn_login"

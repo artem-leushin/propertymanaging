@@ -1,61 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_content_one"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_stroke_bottom"
-        android:fontFamily="@font/montserrat_regular"
-        android:paddingBottom="8dp"
-        android:paddingStart="4dp"
-        android:paddingTop="8dp"
-        android:text="TextView"
-        android:textAlignment="viewStart"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_content_two"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_content_two"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_stroke_3_sides"
-        android:fontFamily="@font/montserrat_regular"
-        android:paddingBottom="8dp"
-        android:paddingStart="4dp"
-        android:paddingTop="8dp"
-        android:text="TextView"
-        android:textAlignment="viewStart"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_content_one"
-        app:layout_constraintEnd_toStartOf="@+id/tv_content_three"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_content_one"
-        app:layout_constraintTop_toTopOf="@+id/tv_content_one"
-        app:layout_constraintVertical_bias="1.0" />
+        <variable
+            name="itemState"
+            type="com.panda.materialproperty.presentation.enterprises.EnterprisesContract.View.DisplayableItem.EnterpriseRow" />
 
-    <TextView
-        android:id="@+id/tv_content_three"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_stroke_bottom"
-        android:fontFamily="@font/montserrat_regular"
-        android:paddingBottom="8dp"
-        android:paddingStart="4dp"
-        android:paddingTop="8dp"
-        android:text="TextView"
-        android:textAlignment="viewStart"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_content_two"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_content_two"
-        app:layout_constraintTop_toTopOf="@+id/tv_content_two" />
-</android.support.constraint.ConstraintLayout>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_content_one"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@drawable/shape_stroke_bottom"
+            android:fontFamily="@font/montserrat_regular"
+            android:paddingBottom="8dp"
+            android:paddingStart="4dp"
+            android:paddingTop="8dp"
+            android:text="@{itemState.firstColumn}"
+            android:textAlignment="viewStart"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_content_two"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="TextView" />
+
+        <TextView
+            android:id="@+id/tv_content_two"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@drawable/shape_stroke_3_sides"
+            android:fontFamily="@font/montserrat_regular"
+            android:paddingBottom="8dp"
+            android:paddingStart="4dp"
+            android:paddingTop="8dp"
+            android:text="@{itemState.secondColumn}"
+            android:textAlignment="viewStart"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_content_one"
+            app:layout_constraintEnd_toStartOf="@+id/tv_content_three"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_content_one"
+            app:layout_constraintTop_toTopOf="@+id/tv_content_one"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="TextView" />
+
+        <TextView
+            android:id="@+id/tv_content_three"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@drawable/shape_stroke_bottom"
+            android:fontFamily="@font/montserrat_regular"
+            android:paddingBottom="8dp"
+            android:paddingStart="4dp"
+            android:paddingTop="8dp"
+            android:text="@{itemState.thirdColumn}"
+            android:textAlignment="viewStart"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_content_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_content_two"
+            app:layout_constraintTop_toTopOf="@+id/tv_content_two"
+            tools:text="TextView" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

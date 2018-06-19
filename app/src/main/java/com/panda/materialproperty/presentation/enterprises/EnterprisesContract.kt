@@ -1,6 +1,7 @@
 package com.panda.materialproperty.presentation.enterprises
 
 import com.panda.materialproperty.domain.entity.Enterprise
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 /**
@@ -13,22 +14,40 @@ interface EnterprisesContract {
         data class State(
             val loading: Boolean = false,
             val error: Throwable? = null,
-            val enterprises: List<Enterprise> = emptyList()
+            val noContent: Boolean = false,
+            val enterprises: List<DisplayableItem> = emptyList()
         )
 
         sealed class StateChanges {
             object StartLoading : StateChanges()
-            class LoadSuccess(val enterprises: List<Enterprise> = emptyList()) : StateChanges()
+            class LoadSuccess(val enterprises: List<DisplayableItem> = emptyList()) : StateChanges()
             class Error(val error: Throwable? = null) : StateChanges()
+        }
+
+        sealed class DisplayableItem {
+            class HeaderRow(
+                val firstColumn: String = "",
+                val secondColumn: String = "",
+                val thirdColumn: String = ""
+            ) : DisplayableItem()
+
+            class EnterpriseRow(
+                val id: Int,
+                val firstColumn: String = "",
+                val secondColumn: String = "",
+                val thirdColumn: String = ""
+            ) : DisplayableItem()
         }
 
         fun render(viewState: EnterprisesContract.View.State)
     }
 
     interface Presenter {
-        val disposable: Disposable
+        val disposables: CompositeDisposable
 
         fun loadAllEnterprises()
+
+        fun loadEnterprisesAt(address: String)
 
         fun reduce(changes: Any)
     }

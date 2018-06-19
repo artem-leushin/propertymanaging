@@ -1,9 +1,12 @@
 package com.panda.materialproperty.presentation.enterprises
 
+import com.panda.materialproperty.domain.entity.Enterprise
 import com.panda.materialproperty.domain.interactor.LoadAllEnterprisesUseCase
-import com.panda.materialproperty.presentation.login.LoginContract
+import com.panda.materialproperty.domain.interactor.LoadEnterprisesAtLocationUseCase
+import com.panda.materialproperty.presentation.enterprises.EnterprisesContract.View.DisplayableItem.EnterpriseRow
+import com.panda.materialproperty.presentation.enterprises.EnterprisesContract.View.DisplayableItem.HeaderRow
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -11,43 +14,82 @@ import io.reactivex.schedulers.Schedulers
  */
 class EnterprisesPresenter(
     private val view: EnterprisesContract.View,
-    private val loadAllEnterprisesUseCase: LoadAllEnterprisesUseCase
+    private val loadAllEnterprisesUseCase: LoadAllEnterprisesUseCase,
+    private val loadEnterprisesAtLocationUseCase: LoadEnterprisesAtLocationUseCase
 ) : EnterprisesContract.Presenter {
 
     private var curState: EnterprisesContract.View.State = EnterprisesContract.View.State()
 
-    override lateinit var disposable: Disposable
+    override val disposables = CompositeDisposable()
+
 
     override fun loadAllEnterprises() {
+        disposables.add(
+            loadAllEnterprisesUseCase.load()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { reduce(EnterprisesContract.View.StateChanges.StartLoading) }
+                .subscribe(
+                    { reduce(EnterprisesContract.View.StateChanges.LoadSuccess(mapToAdapterItems(it))) },
+                    { reduce(EnterprisesContract.View.StateChanges.Error(error = it)) }
+                )
+        )
+    }
 
-        disposable = loadAllEnterprisesUseCase.load()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { reduce(EnterprisesContract.View.StateChanges.StartLoading) }
-            .subscribe(
-                { reduce(EnterprisesContract.View.StateChanges.LoadSuccess(it)) },
-                { reduce(EnterprisesContract.View.StateChanges.Error(error = it)) }
+    // TODO refactor composite disposable
+    override fun loadEnterprisesAt(address: String) {
+        disposables.add(
+            loadEnterprisesAtLocationUseCase.load(address)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { reduce(EnterprisesContract.View.StateChanges.StartLoading) }
+                .subscribe(
+                    { reduce(EnterprisesContract.View.StateChanges.LoadSuccess(mapToAdapterItems(it))) },
+                    { reduce(EnterprisesContract.View.StateChanges.Error(error = it)) }
+                )
+        )
+    }
+
+    private fun mapToAdapterItems(items: List<Enterprise>): List<EnterprisesContract.View.DisplayableItem> {
+        val adapterItems: MutableList<EnterprisesContract.View.DisplayableItem> = mutableListOf()
+        adapterItems += HeaderRow(
+            firstColumn = "Наименование объекта учета",
+            secondColumn = "Тип объекта недвижимости",
+            thirdColumn = "Номер регистрации иного вещ-го права"
+        )
+
+        adapterItems += items.map {
+            EnterpriseRow(
+                id = it.id,
+                firstColumn = it.objectAccountingName,
+                secondColumn = it.propertyObjectType,
+                thirdColumn = it.ownershipRegistrationNumberOther
             )
+        }
+
+        return adapterItems
     }
 
     override fun reduce(changes: Any) {
         curState = when (changes) {
 
-            is LoginContract.View.StateChanges.StartLoading ->
+            is EnterprisesContract.View.StateChanges.StartLoading ->
                 curState.copy(
                     loading = true,
                     error = null
                 )
 
 
-            is LoginContract.View.StateChanges.Success ->
+            is EnterprisesContract.View.StateChanges.LoadSuccess ->
                 curState.copy(
+                    noContent = changes.enterprises.isEmpty(),
+                    enterprises = changes.enterprises,
                     loading = false,
                     error = null
                 )
 
 
-            is LoginContract.View.StateChanges.Fail ->
+            is EnterprisesContract.View.StateChanges.Error ->
                 curState.copy(
                     loading = false,
                     error = changes.error

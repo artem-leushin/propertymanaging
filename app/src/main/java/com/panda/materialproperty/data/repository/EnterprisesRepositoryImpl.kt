@@ -19,7 +19,10 @@ class EnterprisesRepositoryImpl(
     override fun getAllEnterprises(): Flowable<List<Enterprise>> =
         dao.getAllEnterprises().map { it.map { it.toDomain() } }
 
-    override fun getEnterprisesForLocation(where: String): Flowable<List<Enterprise>> {
-        TODO("not implemented")
-    }
+    override fun getEnterprisesForLocation(where: String): Flowable<List<Enterprise>> =
+        dao.getEnterprisesForLocationMatch(where).map {
+            it.map {
+                it.toDomain()
+            }
+        }
 }

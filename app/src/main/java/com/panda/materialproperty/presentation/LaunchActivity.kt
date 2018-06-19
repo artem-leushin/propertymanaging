@@ -30,10 +30,12 @@ class LaunchActivity : AppCompatActivity() {
 
                 override fun onComplete() {
                     startActivity(intentFor<MainActivity>())
+                    finish()
                 }
 
                 override fun onError(e: Throwable) {
                     startActivity(intentFor<LoginActivity>())
+                    finish()
                 }
             })
     }

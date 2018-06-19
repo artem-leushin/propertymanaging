@@ -18,6 +18,12 @@ interface EnterprisesDao {
     @Query("SELECT * FROM Nedvizh WHERE :columnName == :address")
     fun getEnterprisesForLocation(address: String, columnName: String): Flowable<List<EnterpriseDB>>
 
+    @Query("SELECT * FROM Nedvizh WHERE `Адрес` == (:address)")
+    fun getEnterprisesForLocationExact(address: String): Flowable<List<EnterpriseDB>>
+
+    @Query("SELECT * FROM Nedvizh WHERE `Адрес` IN (:address)")
+    fun getEnterprisesForLocationMatch(address: String): Flowable<List<EnterpriseDB>>
+
 //    @Query("SELECT * FROM Nedvizh WHERE `Дата РФ` IS NOT NULL AND `Дата РФ` != ''")
 //    fun getEnterprisesWithDateRf(): Flowable<List<EnterpriseDB>>
 }

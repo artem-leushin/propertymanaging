@@ -1,5 +1,6 @@
 package com.panda.materialproperty.presentation.login
 
+import com.panda.materialproperty.domain.entity.Enterprise
 import io.reactivex.disposables.Disposable
 
 /**

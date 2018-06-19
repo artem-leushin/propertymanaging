@@ -28,7 +28,7 @@ class App : Application() {
         database = RoomAsset.databaseBuilder(
             this,
             EnterprisesDatabase::class.java,
-            "enterprises.db"
+            DB_NAME
         ).build()
     }
 }

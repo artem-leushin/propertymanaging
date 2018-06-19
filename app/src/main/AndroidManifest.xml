@@ -11,17 +11,28 @@
         android:supportsRtl="true"
         android:theme="@style/BaseTheme">
 
-        <activity android:name=".presentation.main.MainActivity"
-            >
+        <activity
+            android:name=".presentation.main.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.LaunchActivity" />
-        <activity android:name=".presentation.login.LoginActivity" />
+
+        <activity
+            android:name=".presentation.LaunchActivity"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".presentation.login.LoginActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -25,7 +25,6 @@ class LoginPresenter(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { reduce(View.StateChanges.StartLoading) }
-            .startWith { reduce(View.StateChanges.StartLoading) }
             .subscribe(
                 { reduce(View.StateChanges.Success) },
                 { reduce(View.StateChanges.Fail(error = it)) }
