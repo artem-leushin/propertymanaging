@@ -3,6 +3,7 @@ package com.panda.materialproperty.presentation.enterprises
 import com.panda.materialproperty.domain.entity.Enterprise
 import com.panda.materialproperty.domain.interactor.LoadAllEnterprisesUseCase
 import com.panda.materialproperty.domain.interactor.LoadEnterprisesAtLocationUseCase
+import com.panda.materialproperty.domain.interactor.LogoutUseCase
 import com.panda.materialproperty.presentation.enterprises.EnterprisesContract.View.DisplayableItem.EnterpriseRow
 import com.panda.materialproperty.presentation.enterprises.EnterprisesContract.View.DisplayableItem.HeaderRow
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -35,7 +36,6 @@ class EnterprisesPresenter(
         )
     }
 
-    // TODO refactor composite disposable
     override fun loadEnterprisesAt(address: String) {
         disposables.add(
             loadEnterprisesAtLocationUseCase.load(address)
@@ -98,7 +98,6 @@ class EnterprisesPresenter(
 
             else -> curState
         }
-
         view.render(curState)
     }
 }

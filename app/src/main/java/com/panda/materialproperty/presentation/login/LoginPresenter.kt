@@ -20,7 +20,6 @@ class LoginPresenter(
     override lateinit var disposable: Disposable
 
     override fun loginWithCreds(email: String, password: String) {
-
         disposable = loginUseCase.login(email, password)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

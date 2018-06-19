@@ -15,10 +15,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/enterprises_location_label"
+            android:text="@string/eterprises_address_title"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,13 +31,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semi_bold"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            tools:text="на ул. Университетская" />
+            tools:text="ул. Университетская" />
 
         <ImageView
             android:id="@+id/btn_refresh"

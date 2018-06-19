@@ -8,7 +8,7 @@
     <string name="txt_login">Авторизация</string>
     <string name="txt_email_hint">введите почту</string>
     <string name="txt_pass_hint">введите пароль</string>
-    <string name="enterprises_location_label">Объекты расположенные</string>
+    <string name="eterprises_address_title">Объекты расположенные\nна %1$s</string>
     <string name="action_filter">Фильтр</string>
 
     <string name="street_sharaga">ул. Университетская</string>

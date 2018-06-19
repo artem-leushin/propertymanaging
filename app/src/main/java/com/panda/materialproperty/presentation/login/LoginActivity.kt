@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.panda.materialproperty.R
+import com.panda.materialproperty.data.SP_STORE
 import com.panda.materialproperty.databinding.ActivityLoginBinding
 import com.panda.materialproperty.databinding.DialogWrongCredsBinding
 import com.panda.materialproperty.domain.interactor.LoginUseCase
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         presenter = LoginPresenter(
             this,
-            LoginUseCase(getSharedPreferences("USER_STORE", Context.MODE_PRIVATE))
+            LoginUseCase(getSharedPreferences(SP_STORE, Context.MODE_PRIVATE))
         )
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)

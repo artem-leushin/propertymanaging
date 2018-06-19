@@ -12,37 +12,52 @@
         tools:openDrawer="start">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_reversed">
+            android:background="@drawable/bg_reversed"
+            android:orientation="vertical">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:background="@color/transparent"
-                app:navigationIcon="@drawable/icon_hamburger" />
+                app:navigationIcon="@drawable/icon_hamburger">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/btn_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/icon_exit" />
+                </FrameLayout>
+
+
+            </android.support.v7.widget.Toolbar>
 
             <FrameLayout
                 android:id="@+id/main_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                />
+                android:layout_height="match_parent" />
 
         </LinearLayout>
 
         <android.support.design.widget.NavigationView
-            android:background="@color/colorPrimaryLight2"
             android:id="@+id/nav_options"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:background="@color/colorPrimaryLight2"
             android:fitsSystemWindows="true"
-            app:itemTextAppearance="@style/NavigationDrawerStyle"
             app:headerLayout="@layout/layout_drawer_header"
-            app:menu="@menu/menu_left_pane"
-            />
-            
+            app:itemTextAppearance="@style/NavigationDrawerStyle"
+            app:menu="@menu/menu_left_pane" />
+
     </android.support.v4.widget.DrawerLayout>
 </layout>

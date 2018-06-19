@@ -1,20 +1,24 @@
 package com.panda.materialproperty.presentation.enterprises
 
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.text.SpannableStringBuilder
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.panda.materialproperty.App
 import com.panda.materialproperty.R
 import com.panda.materialproperty.data.EnterprisesDatabase
+import com.panda.materialproperty.data.SP_STORE
 import com.panda.materialproperty.data.repository.EnterprisesDaoImpl
 import com.panda.materialproperty.data.repository.EnterprisesRepositoryImpl
 import com.panda.materialproperty.databinding.FragmentEnterprisesBinding
 import com.panda.materialproperty.domain.interactor.LoadAllEnterprisesUseCase
 import com.panda.materialproperty.domain.interactor.LoadEnterprisesAtLocationUseCase
+import com.panda.materialproperty.domain.interactor.LogoutUseCase
 import org.jetbrains.anko.design.snackbar
 
 
@@ -26,8 +30,9 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
     private var binding: FragmentEnterprisesBinding? = null
     private var presenter: EnterprisesContract.Presenter? = null
 
-    private val locationName: String by lazy {
-        arguments?.getString("locationName", "")!!
+
+    private val address: String by lazy {
+        arguments?.getString("address", "")!!
     }
 
     // TODO refactor dao provision with factory
@@ -49,6 +54,8 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
                 )
             )
         )
+
+
     }
 
     override fun onCreateView(
@@ -58,21 +65,25 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_enterprises, container, false)
 
-        return binding!!.apply {
-            tvLocationName.text = locationName
+        binding!!.apply {
+            val title = getString(R.string.eterprises_address_title, address)
+
+            tvLocationName.text = SpannableStringBuilder(title).apply {
+                setSpan(RelativeSizeSpan(1.3f), 0, 21, 0)
+            }
 
             with(rvEnterprises) {
                 layoutManager = LinearLayoutManager(context)
                 adapter = EnterprisesAdapter()
             }
-        }.root
+
+        }
+
+        presenter?.loadEnterprisesAt(address)
+
+        return binding!!.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        presenter?.loadEnterprisesAt(locationName)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -110,7 +121,7 @@ class EnterprisesFragment : Fragment(), EnterprisesContract.View {
             return EnterprisesFragment()
                 .apply {
                     val args = Bundle()
-                    args.putString("locationName", locationName)
+                    args.putString("address", locationName)
                     arguments = args
                 }
         }

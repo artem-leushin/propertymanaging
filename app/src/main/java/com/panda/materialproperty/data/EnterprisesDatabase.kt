@@ -10,6 +10,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper
 const val DB_NAME = "enterprises.db"
 const val TABLE_NAME = "Nedvizh"
 const val DB_VERSION = 1
+const val SP_STORE = "USER_STORE"
 
 class EnterprisesDatabase(context: Context) :
     SQLiteAssetHelper(context, DB_NAME, null, DB_VERSION) {
