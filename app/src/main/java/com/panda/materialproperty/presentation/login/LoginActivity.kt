@@ -2,6 +2,7 @@ package com.panda.materialproperty.presentation.login
 
 import android.content.Context
 import android.databinding.DataBindingUtil
+import android.graphics.Color
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
@@ -52,6 +53,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
                     .setView(dialogView.root)
                     .setCancelable(true)
                     .create()
+                dialog.window.decorView.setBackgroundColor(Color.TRANSPARENT)
+                ;
                 tvGotIt.setOnClickListener { dialog.dismiss() }
             }
 
